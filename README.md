@@ -1,3 +1,18 @@
+#💩 gado .env b7al l exemple bdlo hir mysql server
+
+# 1. Install dependencies
+npm install
+
+# 2. Copy the environment file and configure it
+cp .env.example .env
+
+# 3. Start Strapi in development mode
+npm run develop
+
+
+
+
+
 # 🚀 Getting started with Strapi
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
