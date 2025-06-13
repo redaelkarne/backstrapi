@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "featured_products",
+  "info": {
+    "singularName": "featured-product",
+    "pluralName": "featured-products",
+    "displayName": "Featured Product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "originalPrice": {
+      "type": "decimal"
+    },
+    "promo": {
+      "type": "boolean"
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "rating": {
+      "type": "integer",
+      "min": 0,
+      "max": 5
+    },
+    "Categorie": {
+      "type": "enumeration",
+      "enum": [
+        "Bracelet",
+        "Organic",
+        "Textile",
+        "Cuivre"
+      ]
+    }
+  }
+}
