@@ -385,6 +385,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
   attributes: {
     category: Schema.Attribute.String;
+    Content: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -424,6 +425,7 @@ export interface ApiCommandeCommande extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    email: Schema.Attribute.String;
     items: Schema.Attribute.JSON;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -435,6 +437,36 @@ export interface ApiCommandeCommande extends Struct.CollectionTypeSchema {
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     total: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCreationCreation extends Struct.CollectionTypeSchema {
+  collectionName: 'creations';
+  info: {
+    displayName: 'Creation';
+    pluralName: 'creations';
+    singularName: 'creation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::creation.creation'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Titre: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -996,6 +1028,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::article.article': ApiArticleArticle;
       'api::commande.commande': ApiCommandeCommande;
+      'api::creation.creation': ApiCreationCreation;
       'api::featured-product.featured-product': ApiFeaturedProductFeaturedProduct;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

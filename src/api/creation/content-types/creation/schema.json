@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "creations",
+  "info": {
+    "singularName": "creation",
+    "pluralName": "creations",
+    "displayName": "Creation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titre": {
+      "type": "string"
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

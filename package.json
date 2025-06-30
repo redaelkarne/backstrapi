@@ -23,12 +23,14 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
+    "stripe": "^18.2.1",
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/stripe": "^8.0.417",
     "typescript": "^5"
   },
   "engines": {

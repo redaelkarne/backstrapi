@@ -25,6 +25,9 @@
     },
     "total": {
       "type": "decimal"
+    },
+    "email": {
+      "type": "string"
     }
   }
 }
