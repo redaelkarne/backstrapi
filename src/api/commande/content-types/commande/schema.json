@@ -28,6 +28,15 @@
     },
     "email": {
       "type": "string"
+    },
+    "Statut": {
+      "type": "enumeration",
+      "enum": [
+        "En cours ",
+        "En Livraison ",
+        "Livrée",
+        "Annulée"
+      ]
     }
   }
 }
