@@ -37,6 +37,9 @@
         "Livrée",
         "Annulée"
       ]
+    },
+    "discount": {
+      "type": "decimal"
     }
   }
 }

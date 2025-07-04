@@ -425,6 +425,7 @@ export interface ApiCommandeCommande extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    discount: Schema.Attribute.Decimal;
     email: Schema.Attribute.String;
     items: Schema.Attribute.JSON;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -514,6 +515,56 @@ export interface ApiFeaturedProductFeaturedProduct
         },
         number
       >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiReferralReferral extends Struct.CollectionTypeSchema {
+  collectionName: 'referrals';
+  info: {
+    description: 'Syst\u00E8me de parrainage';
+    displayName: 'Referral';
+    pluralName: 'referrals';
+    singularName: 'referral';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    completedAt: Schema.Attribute.DateTime;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::referral.referral'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    referralCode: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    referred: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    referrer: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    rewardAmount: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
+    rewardClaimed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    status: Schema.Attribute.Enumeration<
+      ['pending', 'completed', 'expired', 'cancelled']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'pending'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1040,11 +1091,30 @@ export interface PluginUsersPermissionsUser
     phone: Schema.Attribute.String;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    referralCode: Schema.Attribute.String &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 10;
+      }>;
+    referralRewards: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
+    referralsMade: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::referral.referral'
+    >;
+    referralsReceived: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::referral.referral'
+    >;
+    referredBy: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    totalReferrals: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1071,6 +1141,7 @@ declare module '@strapi/strapi' {
       'api::commande.commande': ApiCommandeCommande;
       'api::creation.creation': ApiCreationCreation;
       'api::featured-product.featured-product': ApiFeaturedProductFeaturedProduct;
+      'api::referral.referral': ApiReferralReferral;
       'api::reseller.reseller': ApiResellerReseller;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

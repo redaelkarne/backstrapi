@@ -77,6 +77,36 @@
     },
     "address": {
       "type": "string"
+    },
+    "referralCode": {
+      "type": "string",
+      "unique": true,
+      "maxLength": 10
+    },
+    "referredBy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "totalReferrals": {
+      "type": "integer",
+      "default": 0
+    },
+    "referralRewards": {
+      "type": "decimal",
+      "default": 0
+    },
+    "referralsMade": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::referral.referral",
+      "mappedBy": "referrer"
+    },
+    "referralsReceived": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::referral.referral",
+      "mappedBy": "referred"
     }
   }
 }

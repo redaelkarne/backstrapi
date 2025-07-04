@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "referrals",
+  "info": {
+    "singularName": "referral",
+    "pluralName": "referrals",
+    "displayName": "Referral",
+    "description": "Système de parrainage"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "referrer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "referralsMade"
+    },
+    "referred": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "referralsReceived"
+    },
+    "referralCode": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 20
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["pending", "completed", "expired", "cancelled"],
+      "default": "pending",
+      "required": true
+    },
+    "rewardClaimed": {
+      "type": "boolean",
+      "default": false
+    },
+    "rewardAmount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "completedAt": {
+      "type": "datetime"
+    }
+  }
+}
