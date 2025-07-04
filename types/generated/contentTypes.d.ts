@@ -520,6 +520,41 @@ export interface ApiFeaturedProductFeaturedProduct
   };
 }
 
+export interface ApiResellerReseller extends Struct.CollectionTypeSchema {
+  collectionName: 'resellers';
+  info: {
+    displayName: 'reseller';
+    pluralName: 'resellers';
+    singularName: 'reseller';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    adress: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::reseller.reseller'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    products: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1036,6 +1071,7 @@ declare module '@strapi/strapi' {
       'api::commande.commande': ApiCommandeCommande;
       'api::creation.creation': ApiCreationCreation;
       'api::featured-product.featured-product': ApiFeaturedProductFeaturedProduct;
+      'api::reseller.reseller': ApiResellerReseller;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

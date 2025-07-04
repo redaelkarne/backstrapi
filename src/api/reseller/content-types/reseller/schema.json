@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "resellers",
+  "info": {
+    "singularName": "reseller",
+    "pluralName": "resellers",
+    "displayName": "reseller"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "adress": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "products": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
