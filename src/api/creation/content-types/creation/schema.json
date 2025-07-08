@@ -26,6 +26,12 @@
     },
     "description": {
       "type": "string"
+    },
+    "Temps": {
+      "type": "string"
+    },
+    "LongDescription": {
+      "type": "text"
     }
   }
 }

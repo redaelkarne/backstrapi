@@ -469,7 +469,9 @@ export interface ApiCreationCreation extends Struct.CollectionTypeSchema {
       'api::creation.creation'
     > &
       Schema.Attribute.Private;
+    LongDescription: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
+    Temps: Schema.Attribute.String;
     Titre: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
